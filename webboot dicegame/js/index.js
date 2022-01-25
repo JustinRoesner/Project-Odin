@@ -1,57 +1,18 @@
-var player1roll = Math.random();
-var player2roll = Math.random();
+var player1roll = Math.floor(Math.random() * 6) + 1;
+var player2roll = Math.floor(Math.random() * 6) + 1;
 
-player1roll = player1roll * 6 + 1;
-player1roll = Math.floor(player1roll);
+var randomImgSrc1 = "images/d" + player1roll + ".jpg";
+var randomImgSrc2 = "images/d" + player2roll + ".jpg";
 
-player2roll = player2roll * 6 + 1;
-player2roll = Math.floor(player2roll);
+// set image
+document.querySelector(".player-1-dice").setAttribute("src", randomImgSrc1);
+document.querySelector(".player-2-dice").setAttribute("src", randomImgSrc2);
 
-switch (player1roll){
-    case 1:
-        document.querySelector(".player-1-dice").setAttribute("src", "images/d1.jpg");
-        break;
-    case 2:
-        document.querySelector(".player-1-dice").setAttribute("src", "images/d2.jpg");
-        break;
-    case 3:
-        document.querySelector(".player-1-dice").setAttribute("src", "images/d3.jpg");
-        break;
-    case 4:
-        document.querySelector(".player-1-dice").setAttribute("src", "images/d4.jpg");
-        break;
-    case 5:
-        document.querySelector(".player-1-dice").setAttribute("src", "images/d5.jpg");
-        break;
-    case 6:
-        document.querySelector(".player-1-dice").setAttribute("src", "images/d6.jpg");
-        break;
-}
-
-switch (player2roll){
-    case 1:
-        document.querySelector(".player-2-dice").setAttribute("src", "images/d1.jpg");
-        break;
-    case 2:
-        document.querySelector(".player-2-dice").setAttribute("src", "images/d2.jpg");
-        break;
-    case 3:
-        document.querySelector(".player-2-dice").setAttribute("src", "images/d3.jpg");
-        break;
-    case 4:
-        document.querySelector(".player-2-dice").setAttribute("src", "images/d4.jpg");
-        break;
-    case 5:
-        document.querySelector(".player-2-dice").setAttribute("src", "images/d5.jpg");
-        break;
-    case 6:
-        document.querySelector(".player-2-dice").setAttribute("src", "images/d6.jpg");
-        break;
-}
-
+// set roll number
 document.querySelector(".player-1-roll").textContent = player1roll;
 document.querySelector(".player-2-roll").textContent = player2roll;
 
+// find win condition
 if (player1roll > player2roll){
     //player 1 won
     document.querySelector(".player-1-result").textContent="Winner!";
