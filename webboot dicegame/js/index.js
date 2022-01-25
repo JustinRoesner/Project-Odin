@@ -19,8 +19,9 @@ if (player1roll > player2roll){
     document.querySelector(".player-2-result").textContent="";
 }else if (player1roll === player2roll){
     //tie
-    document.querySelector(".player-1-result").textContent="Tie";
-    document.querySelector(".player-2-result").textContent="Tie";
+    document.querySelector(".player-tie").textContent="Tie!";
+    document.querySelector(".player-1-result").textContent="";
+    document.querySelector(".player-2-result").textContent="";
 }else{
     //player 2 won
     document.querySelector(".player-1-result").textContent="";
