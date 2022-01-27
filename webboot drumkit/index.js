@@ -14,6 +14,7 @@ for (var i = 0; i<7; i++){
         // this.style.color = "white";
         var buttonInnerHTML = this.innerHTML;
         makeSound(buttonInnerHTML);
+        buttonAnimation(buttonInnerHTML);
     });
 }
 
@@ -23,6 +24,7 @@ document.addEventListener("keydown", function(event) {
     // alert("Hey was pressed!");
     // console.log(event.key);
     makeSound(event.key);
+    buttonAnimation(event.key);
 });
 
 function makeSound(key){
@@ -68,3 +70,13 @@ function makeSound(key){
         }
 }
 
+function buttonAnimation(currentKey){
+    //document.querySelector(".w");
+    var activeButton = document.querySelector("." + currentKey);
+    activeButton.classList.add("pressed");
+
+    setTimeout(function() {
+        activeButton.classList.remove("pressed");
+    }, 100);
+
+}
