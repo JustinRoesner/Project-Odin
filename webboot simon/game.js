@@ -15,7 +15,15 @@ audioGreen.volume  = 0.2;
 audioRed.volume    = 0.2;
 audioYellow.volume = 0.2;
 
+// level
+var started = false;
+var level = -1;
+
 function nextSequence(){
+    started = true;
+    level++;
+    $("#level-title").text("Level " + level);
+    
     randomNumber = Math.floor(Math.random() * 4); //random number 1-4
     randomChosenColor = buttonColors[randomNumber];
     gamePattern.push(randomChosenColor);
@@ -47,6 +55,13 @@ function flash(element){
     playSound(element);
 }
 
+function animatePress(element){
+    $("." + element).addClass("pressed");
+    setTimeout(function() {
+        $("." + element).removeClass("pressed");
+    }, 100);
+}
+
 function userClick(id) {
     userChosenColor = id;
     userClickedPattern.push(id);
@@ -58,9 +73,13 @@ $(".btn").on("click", function(e) {
     console.log(e);
     userClick(this.id);
     playSound(this.id);
+    animatePress(this.id);
 });
 
 $("body").on("keypress", function(){
-    nextSequence();
+    //if key press happend for first time
+    if (started == false){ 
+        nextSequence();
+    }
 });
 
