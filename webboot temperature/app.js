@@ -17,7 +17,7 @@ app.get("/", function(req, res){
             console.log("Sycamore:");
             console.log(tempurature);
             console.log(description);
-            res.write("<h1>The temp in sycmaore is " + tempurature + "F</h1>");
+            res.write("<h1>The temp in Sycmaore is " + tempurature + "F</h1>");
             res.write("<img src=" + imageURL + " alt='weather icon'>");
             res.write("<p>Outside..." + description + "</p>");
         });
@@ -32,10 +32,10 @@ app.get("/", function(req, res){
             const description = weatherData.weather[0].description;
             const icon = weatherData.weather[0].icon;
             const imageURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png"
-            console.log("Phily:");
+            console.log("Philly:");
             console.log(tempurature);
             console.log(description);
-            res.write("<h1>The temp in Phily is " + tempurature + "F</h1>");
+            res.write("<h1>The temp in Philly is " + tempurature + "F</h1>");
             res.write("<img src=" + imageURL + " alt='weather icon'>");
             res.write("<p>Outside..." + description + "</p>");
             res.send();
