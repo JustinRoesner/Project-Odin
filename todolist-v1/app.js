@@ -3,14 +3,26 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
+var items = ["Buy food", "Coook food", "Eat food"];
+
 app.set("view engine", "ejs");
+
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.get("/", function(req, res){
     var today = new Date();
-    var day = "";
 
-    var currentDay = today.getDay();
+    var options = {
+        weekday: "long",
+        day: "numeric",
+        month: "long"
+    }
 
+    var day = today.toLocaleDateString("en-US", options);
+
+    //var day = "";
+    //var currentDay = today.getDay();
+    /*
     switch (currentDay) {
         case 0:
             day = "Sunday";
@@ -37,6 +49,7 @@ app.get("/", function(req, res){
             console.log("Error: Day out of range. day = " + currentDay);
             break;
     }
+    */
 
     /*
     if (today.getDay() === 6 || today.getDay() === 0){
@@ -53,7 +66,19 @@ app.get("/", function(req, res){
         //res.sendFile(__dirname + "/index.html");
     }
     */
-        res.render("list", {kindOfDay: day});
+    res.render("list", {kindOfDay: day, newListItems: items});
+});
+
+app.post("/", function(req, res){
+    //newItem is the name of input text 
+    var item = req.body.newItem;
+
+    items.push(item);
+
+    //res.render("list", {newListItem: item});
+    res.redirect("/");
+
+    console.log(item);
 });
 
 app.listen(3000, function(){
