@@ -3,25 +3,26 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
-var items = ["Buy food", "Coook food", "Eat food"];
+let items = ["Buy food", "Coook food", "Eat food"];
 
 app.set("view engine", "ejs");
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
 
-app.get("/", function(req, res){
-    var today = new Date();
+app.get("/", function (req, res) {
+    let today = new Date();
 
-    var options = {
+    let options = {
         weekday: "long",
         day: "numeric",
         month: "long"
     }
 
-    var day = today.toLocaleDateString("en-US", options);
+    let day = today.toLocaleDateString("en-US", options);
 
-    //var day = "";
-    //var currentDay = today.getDay();
+    //let day = "";
+    //let currentDay = today.getDay();
     /*
     switch (currentDay) {
         case 0:
@@ -66,12 +67,12 @@ app.get("/", function(req, res){
         //res.sendFile(__dirname + "/index.html");
     }
     */
-    res.render("list", {kindOfDay: day, newListItems: items});
+    res.render("list", { kindOfDay: day, newListItems: items });
 });
 
-app.post("/", function(req, res){
+app.post("/", function (req, res) {
     //newItem is the name of input text 
-    var item = req.body.newItem;
+    let item = req.body.newItem;
 
     items.push(item);
 
@@ -81,6 +82,6 @@ app.post("/", function(req, res){
     console.log(item);
 });
 
-app.listen(3000, function(){
+app.listen(3000, function () {
     console.log("Server started on port 3000");
 });
