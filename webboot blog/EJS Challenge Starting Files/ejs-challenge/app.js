@@ -16,10 +16,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 app.get('/', (req, res) => {
-  res.render("home.ejs", { content: homeStartingContent });
+  res.render("home.ejs", { homeContent: homeStartingContent });
 });
 
+app.get('/contact', (req, res) => {
+  res.render("contact.ejs", { contactContent: contactContent });
+});
 
+app.get('/about', (req, res) => {
+  res.render("about.ejs", { aboutContent: aboutContent })
+});
 
 
 
